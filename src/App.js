@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import Search from './pages/Search';
 import Login from './pages/Login';
 import Album from './pages/Album';
-import Search from './pages/Search';
 import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
