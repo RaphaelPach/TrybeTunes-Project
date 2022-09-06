@@ -4,33 +4,42 @@ import Header from './Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from './MusicCard';
 import Loading from './Loading';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   state = {
     art: '',
     music: [],
+    isLoading: '',
+    musicTwo: [],
   };
 
   async componentDidMount() {
+    this.setState({
+      isLoading: true,
+    });
     const { match: { params: { id } } } = this.props;
     const getOne = await getMusics(id);
-    console.log(getOne);
+    const getTwo = await getFavoriteSongs();
+    console.log('log', getTwo);
     this.setState({
       art: getOne,
       music: getOne.filter((_, age) => (
         age > 0
       )),
+      isLoading: false,
+      musicTwo: getTwo,
 
     });
   }
 
   render() {
-    const { art, music } = this.state;
+    const { art, music, isLoading, musicTwo } = this.state;
     return (
       <div data-testid="page-album">
         <Header />
         {
-          art === ''
+          isLoading || art === ''
             ? (<Loading />)
             : (
               <div>
@@ -54,6 +63,7 @@ class Album extends Component {
                       previewUrl={ cria.previewUrl }
                       trackId={ cria.trackId }
                       track={ cria }
+                      musicTwo={ musicTwo }
                     />
                   ))
                 }

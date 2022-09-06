@@ -9,6 +9,15 @@ class MusicCard extends Component {
     isLoading: '',
   };
 
+  componentDidMount() {
+    const { musicTwo, trackId } = this.props;
+    this.setState({
+      box: musicTwo.some((two) => (
+        two.trackId === trackId
+      )),
+    });
+  }
+
   handleChange = async () => {
     const { track } = this.props;
     this.setState({
