@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import getMusics from '../services/musicsAPI';
-import Loading from './Loading';
 import MusicCard from './MusicCard';
+import Loading from './Loading';
 
 class Album extends Component {
   state = {
@@ -52,7 +52,8 @@ class Album extends Component {
                       key={ cria.trackId }
                       trackName={ cria.trackName }
                       previewUrl={ cria.previewUrl }
-
+                      trackId={ cria.trackId }
+                      track={ cria }
                     />
                   ))
                 }
